@@ -1,7 +1,11 @@
-package br.unibh.teste01;
-
+package br.unibh.teste;
 import java.math.BigDecimal;
 import java.util.Date;
+
+import br.unibh.entidades.Aluno;
+import br.unibh.entidades.Professor;
+
+
 
 public class Main {
 
