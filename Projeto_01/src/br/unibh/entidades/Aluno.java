@@ -11,7 +11,8 @@ public class Aluno extends Pessoa {
 	public Aluno(){}
 	
 	
-	public Aluno(Long id, String nome, String cpf, String matricula, Date dataaniversaio) {
+	public Aluno(Long id, String nome, String cpf, String matricula,
+			Date dataaniversaio) {
 		super(id, nome, cpf);
 		this.matricula = matricula;
 		this.dataaniversaio = dataaniversaio;
