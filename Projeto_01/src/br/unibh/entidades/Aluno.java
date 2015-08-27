@@ -25,13 +25,15 @@ public class Aluno extends Pessoa {
 	}
 	
 	
+	
+	
 	@Override
 	public String toString() {
-		return "Aluno [matricula=" + matricula + ", dataaniversaio=" + dataaniversaio + ", getMatricula()="
-				+ getMatricula() + ", getDataaniversaio()=" + getDataaniversaio() + ", getClass()=" + getClass()
-				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+		return "Aluno [matricula=" + matricula + ", dataaniversaio=" + dataaniversaio + ", toString()="
+				+ super.toString() + "]";
 	}
-	
+
+
 	public Date getDataaniversaio() {
 		return dataaniversaio;
 	
