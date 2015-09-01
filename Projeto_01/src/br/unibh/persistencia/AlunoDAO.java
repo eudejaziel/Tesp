@@ -11,7 +11,6 @@ import br.unibh.entidades.Aluno;
 
 public class AlunoDAO implements DAO<Aluno,Long>{
 	
-	private static Connection con =null;
 	
 	// Aluno , Long e subustituido por T e K na classe DAO
 	// T e K e curinga pra chamar a Classe e o parametro geralmente ID da classe
@@ -44,9 +43,10 @@ public class AlunoDAO implements DAO<Aluno,Long>{
 	public List<Aluno> findAll() {
 		
 		ArrayList <Aluno> lista = new ArrayList<Aluno>();
+		
 		try {
-			con=JDBCUtil.getConnection();
-			ResultSet res=con.prepareStatement(
+			
+			ResultSet res=JDBCUtil.getConnection().prepareStatement(
 					 "Select * from tb_aluno").executeQuery();
 			
 			while(res.next()){
@@ -55,7 +55,7 @@ public class AlunoDAO implements DAO<Aluno,Long>{
 						res.getString("nome"),
 						res.getString("cpf"),
 						res.getString("matricula"),
-						null));
+						res.getDate("dataaniversaio")));
 				
 				
 			}
@@ -64,12 +64,8 @@ public class AlunoDAO implements DAO<Aluno,Long>{
 			// TODO: handle exception
 			e.printStackTrace();
 		}finally {
-			try {
-				JDBCUtil.closeConnection();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			JDBCUtil.closeConnection();
+			
 		}
 		// TODO Auto-generated method stub
 		return lista;

@@ -8,6 +8,7 @@ import br.unibh.entidades.Aluno;
 import br.unibh.entidades.Professor;
 import br.unibh.persistencia.AlunoDAO;
 import br.unibh.persistencia.JDBCUtil;
+import br.unibh.persistencia.ProfessorDAO;
 
 
 
@@ -25,13 +26,24 @@ public class Main {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			
-			
-			
+				
 			
 		}
 		}
 		
+	
+	ProfessorDAO daoa =new  ProfessorDAO();
+	List <Professor> listaa = daoa.findAll();
+	for (Professor b:listaa){
+	System.out.println(b);
+	
+	try {
+		Connection c = JDBCUtil.getConnection();
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
 	}
+}
 
+	}
 }

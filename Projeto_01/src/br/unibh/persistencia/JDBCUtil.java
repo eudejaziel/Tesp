@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class JDBCUtil {
+	// coltr+shif+e Formata o codigo
+	
 	private static Connection con;
 
 	public static Connection getConnection() throws Exception {
@@ -14,11 +16,15 @@ public class JDBCUtil {
 		return con;
 	}
 
-	public static void closeConnection() throws Exception {
-		if (con != null && !con.isClosed()) {
-			con.close();
-			System.out.println("Fechou o banco de dados");
+	public static void closeConnection() {
+		try {
+
+			if (con != null && !con.isClosed()) {
+				con.close();
+				System.out.println("Fechou o banco de dados");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
-
 }
