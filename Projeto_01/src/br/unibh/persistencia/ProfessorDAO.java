@@ -10,8 +10,6 @@ import br.unibh.entidades.Professor;
 
 public class ProfessorDAO implements DAO<Professor,Long> {
 	
-	private static Connection con =null;
-
 
 	// Professor  , Long e subustituido por T e K na classe DAO
 	// T e K e curinga pra chamar a Classe e o parametro geralmente ID da classe
@@ -49,8 +47,8 @@ public class ProfessorDAO implements DAO<Professor,Long> {
 	
 		ArrayList <Professor> listaa = new ArrayList<Professor>();
 		try {
-			con=JDBCUtil.getConnection();
-			ResultSet res=con.prepareStatement(
+			
+			ResultSet res=JDBCUtil.getConnection().prepareStatement(
 					 "Select * from tb_professor").executeQuery();
 			
 			while(res.next()){
@@ -66,12 +64,8 @@ public class ProfessorDAO implements DAO<Professor,Long> {
 			// TODO: handle exception
 			e.printStackTrace();
 		}finally {
-			try {
-				JDBCUtil.closeConnection();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
+				JDBCUtil.closeConnection();			
 		}
 		// TODO Auto-generated method stub
 		return listaa;

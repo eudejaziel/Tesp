@@ -7,7 +7,7 @@ public class Aluno extends Pessoa {
 	private String matricula;
 	private Date dataaniversaio;
 	
-	// coltr+shif+e Formata o codigo
+	// coltr+shif+f Formata o codigo
 	
 	public Aluno(){}
 	

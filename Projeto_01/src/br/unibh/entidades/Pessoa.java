@@ -1,6 +1,6 @@
 package br.unibh.entidades;
 
-//coltr+shif+e Formata o codigo
+//coltr+shif+f Formata o codigo
 
 public abstract class Pessoa {
 
