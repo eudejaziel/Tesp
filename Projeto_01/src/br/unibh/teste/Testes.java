@@ -15,7 +15,7 @@ public class Testes {
 	public void testeAlunoFindAll() {
 		AlunoDAO dao = new AlunoDAO();
 		List<Aluno> lista = dao.findAll();
-		Assert.assertEquals(lista.size(), 105); // 
+		Assert.assertEquals(lista.size(), 103); // 
 
 	}
 	
@@ -29,12 +29,20 @@ public class Testes {
 	}
 	
 	@Test
-	public void testeAlunoInsert(){
+	public void testeAlunoInsertEDelete(){
 		AlunoDAO dao = new AlunoDAO();
-		Aluno a = new Aluno(null,"Meude", "77312382312", "24234234",new Date());
+		Aluno a = new Aluno(null,"beltrano", "78312382312", "24234234",new Date());
+		
 		dao.insert(a);
-		Aluno b = dao.find("Erich R. Dale");
-		Assert.assertNotNull(b);
+		
+		Aluno b = dao.find("beltrano");
+		b.setNome("eudeJ");
+		dao.update(b);
+			
+		dao.delete(b);
+		Aluno c = dao.find("eudeJ");
+		
+		
 		// Vai verificar se na linha 2 exisi Jordam
 		
 	}
