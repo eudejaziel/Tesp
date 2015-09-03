@@ -52,8 +52,8 @@ try {
 		try {
 					
 				PreparedStatement p = JDBCUtil.getConnection().prepareStatement(
-							 "Select * from tb_aluno where nome like?");
-							p.setString(1, nome);
+							 "Select * from tb_aluno where nome like ?");
+							p.setString(1, nome+"%");
 					ResultSet res= p.executeQuery();
 					if(res.next()){
 						return new Aluno (
@@ -83,7 +83,7 @@ try {
 			PreparedStatement p = JDBCUtil.getConnection().prepareStatement(
 						 "insert into  tb_aluno"
 						 + " (nome,cpf,matricula,dataaniversaio)"
-								 +"values (?,?,?,?"); 
+								 +"values (?,?,?,?)"); 
 						 
 						p.setString(1,t.getNome());
 						p.setString(2,t.getCpf());

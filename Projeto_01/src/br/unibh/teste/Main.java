@@ -29,7 +29,7 @@ public class Main {
 				
 			
 		}
-		}
+			}
 		
 	
 	ProfessorDAO daoa =new  ProfessorDAO();
