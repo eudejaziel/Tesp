@@ -49,8 +49,11 @@ public class AlunoDAO implements DAO<Aluno, Long> {
 			p.setString(1, nome + "%");
 			ResultSet res = p.executeQuery();
 			if (res.next()) {
-				return new Aluno(res.getLong("id"), res.getString("nome"), res.getString("cpf"),
-						res.getString("matricula"), res.getDate("dataaniversaio"));
+				return new Aluno(res.getLong("id"), 
+						res.getString("nome"), 
+						res.getString("cpf"),
+						res.getString("matricula"),
+						res.getDate("dataaniversaio"));
 			}
 
 		} catch (Exception e) {
@@ -92,8 +95,7 @@ public class AlunoDAO implements DAO<Aluno, Long> {
 		try {
 
 			PreparedStatement p = JDBCUtil.getConnection().prepareStatement(
-					"update  tb_aluno set nome=?, cpf=?, matricula=?, dataaniversaio=?"
-					+"where id=?");
+					"update  tb_aluno set nome=?, cpf=?, matricula=?, dataaniversaio=?" + "where id=?");
 
 			p.setString(1, t.getNome());
 			p.setString(2, t.getCpf());
@@ -115,10 +117,9 @@ public class AlunoDAO implements DAO<Aluno, Long> {
 	public void delete(Aluno t) {
 		try {
 
-			PreparedStatement p = JDBCUtil.getConnection().prepareStatement(
-					"delete from  tb_aluno where id= ?");
+			PreparedStatement p = JDBCUtil.getConnection().prepareStatement("delete from  tb_aluno where id= ?");
 
-			p.setLong(1,t.getId());
+			p.setLong(1, t.getId());
 			p.executeUpdate();
 
 		} catch (Exception e) {
@@ -127,8 +128,6 @@ public class AlunoDAO implements DAO<Aluno, Long> {
 		} finally {
 			JDBCUtil.closeConnection();
 		}
-
-	
 
 	}
 

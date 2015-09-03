@@ -15,7 +15,7 @@ public class Testes {
 	public void testeAlunoFindAll() {
 		AlunoDAO dao = new AlunoDAO();
 		List<Aluno> lista = dao.findAll();
-		Assert.assertEquals(lista.size(), 103); // 
+		Assert.assertEquals(lista.size(), 104); // 
 
 	}
 	
@@ -31,16 +31,18 @@ public class Testes {
 	@Test
 	public void testeAlunoInsertEDelete(){
 		AlunoDAO dao = new AlunoDAO();
-		Aluno a = new Aluno(null,"beltrano", "78312382312", "24234234",new Date());
+		Aluno a = new Aluno(null,"beltrano", "79312382312", "24234234",new Date());
 		
-		dao.insert(a);
+		dao.insert(a); //vai inserir o objeto a que sãos os dados acima de aluno
 		
-		Aluno b = dao.find("beltrano");
-		b.setNome("eudeJ");
-		dao.update(b);
+		Aluno b = dao.find("beltrano"); // vai selecionar atraves do ID e trazer o nome
+		
+		b.setNome("eudeJ"); // vai fazer select buscando com like pelo SetNome
+		dao.update(b); // Vai fazer update no banco trocando beltrano por EudeJ
 			
-		dao.delete(b);
-		Aluno c = dao.find("eudeJ");
+		dao.delete(b); // vai deleter no banco por id
+		Assert.assertNotNull(b); // vai verifcar se existe no banco não tendo volta null
+		
 		
 		
 		// Vai verificar se na linha 2 exisi Jordam
