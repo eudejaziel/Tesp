@@ -1,10 +1,13 @@
 package br.unibh.teste;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import org.junit.Test;
 import org.junit.Assert;
 import br.unibh.entidades.Aluno;
+import br.unibh.entidades.Professor;
 import br.unibh.persistencia.AlunoDAO;
+import br.unibh.persistencia.ProfessorDAO;
 
 // para testar automatizado tem que colocar o @Test
 
@@ -42,10 +45,41 @@ public class Testes {
 			
 		dao.delete(b); // vai deleter no banco por id
 		Assert.assertNotNull(b); // vai verifcar se existe no banco não tendo volta null
-		
-		
-		
-		// PROGRAMA FINALIZADO
+				
+	
+	}
+	public void testeProfessorFindAll() {
+		ProfessorDAO dao = new ProfessorDAO();
+		List<Professor> lista = dao.findAll();
+		Assert.assertEquals(lista.size(), 103); // 
+
+	}
+	
+	@Test
+	public void testeProfessorFind(){
+		ProfessorDAO dao = new ProfessorDAO();
+		Professor a = dao.find(100L); // id 2 L = tipo Long
+		Assert.assertEquals(a.getNome(),"Kay A. Frye");
+		// Vai verificar se na linha 2 exisi Jordam
 		
 	}
+	
+	@Test
+	public void testeProfessorInsertEDelete(){
+		ProfessorDAO dao = new ProfessorDAO();
+		Professor pro = new Professor(null,"Eudee","98409563456",new BigDecimal(1500.00));
+	
+		dao.insert(pro); //vai inserir o objeto a que sãos os dados acima de aluno
+		
+		Professor leo = dao.find("Eudee"); // vai selecionar atraves do ID e trazer o nome
+		
+		leo.setNome("eude Almeida"); // vai fazer select buscando com like pelo SetNome
+		dao.update(leo); // Vai fazer update no banco trocando beltrano por EudeJ
+			
+		dao.delete(leo); // vai deleter no banco por id
+		Assert.assertNotNull(leo); // vai verifcar se existe no banco não tendo volta null
+		
+		// Projeto OK 09.09.2015
+	}
+	
 }
