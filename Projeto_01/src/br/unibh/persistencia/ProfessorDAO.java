@@ -91,7 +91,7 @@ public class ProfessorDAO implements DAO<Professor, Long> {
 		try {
 
 			PreparedStatement p = JDBCUtil.getConnection()
-					.prepareStatement("update  tb_professor set nome=?, cpf=?, salario=?" + "where id=?");
+					.prepareStatement("update  tb_professor set nome=?, cpf=?, salario=? where id=?");
 
 			p.setString(1, t.getNome());
 			p.setString(2, t.getCpf());
