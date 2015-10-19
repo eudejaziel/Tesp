@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -28,8 +30,12 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @PrimaryKeyJoinColumn
-@Table(name="TB_ALUNO",
-uniqueConstraints = @UniqueConstraint(columnNames="matricula"))
+@Table(name="TB_ALUNO",uniqueConstraints = @UniqueConstraint(columnNames="matricula"))
+
+@NamedQueries({
+@NamedQuery(name="Aluno.findByName", query = "select a from Aluno a where "
+		+ "a.nome like :nome")
+})
 public class Aluno extends Pessoa  {
 	
 	@Pattern(regexp = "[\\w]*", message = "Forncecer apenas caracteres e digitos")
