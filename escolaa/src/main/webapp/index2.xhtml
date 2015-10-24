@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+   template="/WEB-INF/templates/meutemplete.xhtml">
+   <ui:define name="content">
+     
+        
+   </ui:define>
+   <ui:define name="center">
+   <p:layoutUnit position="west" size="220">  
+                    <ui:insert name="menu">
+                        <h:form>
+                            <p:menu style="width: 200px">
+                                <p:submenu label="Menu">
+                                    <p:menuitem value="Aluno"  icon="ui-icon-key"/>
+                                    
+                                     <p:menuitem value="Sala" icon="ui-icon-key" />
+                                      <p:menuitem value="Professor" icon="ui-icon-key" />
+                                    <p:menuitem value="Fazer meu cadastro" icon="ui-icon-contact" />         
+                                </p:submenu>
+                            </p:menu>
+                        </h:form>
+                    </ui:insert>
+                </p:layoutUnit>  
+    </ui:define>
+</ui:composition>
