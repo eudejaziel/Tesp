@@ -1,4 +1,5 @@
 package br.unibh.escolaa.visao;
+
 import java.util.List;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -95,21 +96,19 @@ public class ControleAluno {
 		aluno = null;
 	}
 
-	public void excluir(Long id){
+	public void excluir(Long id) {
 		FacesMessage facesMsg;
 		try {
-		sa.delete(sa.find(id));
-		alunos = sa.findByName(nomeArg);
+			sa.delete(sa.find(id));
+			alunos = sa.findByName(nomeArg);
 		} catch (Exception e) {
-		e.printStackTrace();
-		facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-		"Erro: " + e.getMessage(), "");
-		FacesContext.getCurrentInstance().addMessage("messagePanel", facesMsg);
-		return;
+			e.printStackTrace();
+			facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro: " + e.getMessage(), "");
+			FacesContext.getCurrentInstance().addMessage("messagePanel", facesMsg);
+			return;
 		}
 		aluno = null;
 		facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Aluno	excluído com sucesso!", "");
-		FacesContext.getCurrentInstance().addMessage("messagePanel",
-		facesMsg);
-		}
+		FacesContext.getCurrentInstance().addMessage("messagePanel", facesMsg);
+	}
 }

@@ -2,13 +2,14 @@ package br.unibh.escola.entidades;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -32,13 +33,20 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @PrimaryKeyJoinColumn
 @Table(name="TB_PROFESSOR")
+
+@NamedQueries({
+@NamedQuery(name="Professor.findByName", query = "select a from Professor a where "
+		+ "a.nome like :nome")
+})
+
 public class Professor extends Pessoa  {
 	
 		// Variaveis de Instancia
 	
-	@DecimalMax("500.00")
-	@DecimalMin("10000.00")
-	@Column(nullable=true, columnDefinition = "decimal(14,2)")
+	@DecimalMax(value="500.00")
+	@DecimalMin(value="100000.00")
+	@NotNull
+	@Column(nullable=false )
 	private BigDecimal salario ; // trabalha melhor com numeros fracionarios
 	
 	private static Double BONUS=0.1D;

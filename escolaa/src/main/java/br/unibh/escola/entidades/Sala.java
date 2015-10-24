@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -28,6 +30,12 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Inheritance(strategy=InheritanceType.JOINED)
 @Table(name="TB_SALA",
 uniqueConstraints = @UniqueConstraint(columnNames="codigo"))
+
+@NamedQueries({
+@NamedQuery(name="Sala.findByName", query = "select a from Sala a where "
+		+ "a.codigo like :codigo")
+})
+
 public class Sala {
 	
 	@Id
@@ -38,12 +46,12 @@ public class Sala {
 	@Pattern(regexp = "[\\CCNNN]*", message = "Forncecer apenas Letras Maiúsculas e Números")
 	@Size(min=5,max=5)
 	@Column(length=5, columnDefinition = "char(5)",nullable=false)
-	@NotBlank
+	
 	private String codigo;
 	
 	@Pattern(regexp = "[\\w]*", message = "Forncecer apenas números mínimo 5 é máximo 100")
 	@Size(min=5,max=100)
-	@Column(name = "capacidade", nullable=false)
+	@Column(name = "capacidade", nullable=true)
 	private int capacidade;
 	
 	
