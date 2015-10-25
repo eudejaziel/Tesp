@@ -43,8 +43,8 @@ public class Professor extends Pessoa  {
 	
 		// Variaveis de Instancia
 	
-	@DecimalMax(value="500.00")
-	@DecimalMin(value="100000.00")
+	@DecimalMax("5000.00")
+	@DecimalMin("100.00")
 	@NotNull
 	@Column(nullable=false )
 	private BigDecimal salario ; // trabalha melhor com numeros fracionarios
