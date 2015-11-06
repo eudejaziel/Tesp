@@ -28,8 +28,7 @@
 						<p:message for="dataTerminoManutencao" errorClass="invalid" />
 
 						<p:outputLabel value="Observacao" />
-						<p:inputText id="observacao" value="#{salamb.sala.observacao}"
-							size="10" />
+						  <p:inputTextarea rows="10" cols="40" id="observacao" value="#{salamb.sala.observacao}" queryDelay="750" minQueryLength="4" />
 						<p:message for="observacao" errorClass="invalid" />
 
 						<p:outputLabel value="Possui Computador " />
@@ -50,10 +49,13 @@
 							value="#{salamb.sala.possuiQuadroBranco}" onLabel="SIM"
 							offLabel="NÃO" style="width:60px" />
 						<p:message for="possuiQuadroBranco" errorClass="invalid" />
-
-						<p:outputLabel value="Status " />
-						<p:inputText id="status" value="#{salamb.sala.status}" size="14" />
-						<p:message for="status" errorClass="invalid" />
+						
+						<p:outputLabel value="Status?" />
+						<p:selectOneButton id="status" required="true" value="#{salamb.sala.status}">
+							<f:selectItem itemLabel="Ativo" itemValue="1" />
+							<f:selectItem itemLabel="Em manutencao" itemValue="2" />
+							<f:selectItem itemLabel="Desativado" itemValue="3" />
+						</p:selectOneButton>
 
 					</p:panelGrid>
 

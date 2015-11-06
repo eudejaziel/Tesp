@@ -4,6 +4,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -15,6 +16,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -39,19 +42,19 @@ uniqueConstraints = @UniqueConstraint(columnNames="codigo"))
 public class Sala {
 	
 	@Id
-	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	
-	@Pattern(regexp = "[\\CCNNN]*", message = "Forncecer apenas Letras Maiúsculas e Números")
-	@Size(min=5,max=5)
-	@Column(length=5, columnDefinition = "char(5)",nullable=false)
 	
+	@NotBlank
+	@Column(nullable = false, columnDefinition = "CHAR(5)")
 	private String codigo;
 	
-	@Pattern(regexp = "[\\w]*", message = "Forncecer apenas números mínimo 5 é máximo 100")
-	@Size(min=5,max=100)
-	@Column(name = "capacidade", nullable=true)
+
+	@NotNull
+	@DecimalMin("4")
+	@DecimalMax("60")
 	private int capacidade;
 	
 	
@@ -69,12 +72,12 @@ public class Sala {
 	
 	
 	@Size(max=255)
-	@Column(length=255, columnDefinition = "varchar(255)",nullable=true)
+	@Column(nullable = true, columnDefinition = "VARCHAR(255)")
 	private String observacao;
 	
 	
-
-	@Column(nullable=false)
+	@NotNull
+	@Column(nullable = false)
 	private int status;
 	
 	
@@ -154,11 +157,14 @@ public class Sala {
 
 
 	public int getStatus() {
+		
+			
 		return status;
 	}
 
 
 	public void setStatus(int status) {
+		
 		this.status = status;
 	}
 
@@ -166,6 +172,8 @@ public class Sala {
 	public Date getDataTerminoManutencao() {
 		return dataTerminoManutencao;
 	}
+	
+	private String possui;
 
 
 	public void setDataTerminoManutencao(Date dataTerminoManutencao) {
@@ -182,7 +190,16 @@ public class Sala {
 	}
 
 
-
+	public String statusToString(int status) {
+		if (getStatus() == 1){
+			possui = "Ativo";
+		} else if (getStatus() == 2){
+			possui = "Em Manutencao";
+		} else {
+			possui = "Desativado";
+		}
+		return possui;
+	}
 
 
 }
