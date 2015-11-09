@@ -1,3 +1,4 @@
+
 INSERT INTO tb_pessoa (id,cpf,nome) VALUES (1,"89068312375","Maxwell Huff");
 INSERT INTO tb_pessoa (id,cpf,nome) VALUES (2,"76362463392","Wallace Ratliff");
 INSERT INTO tb_pessoa (id,cpf,nome) VALUES (3,"96884360034","Gray Marsh");

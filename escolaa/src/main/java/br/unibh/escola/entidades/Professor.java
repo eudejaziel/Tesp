@@ -38,7 +38,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 @NamedQuery(name="Professor.findByName", query = "select a from Professor a where "
 		+ "a.nome like :nome")
 })
-
 public class Professor extends Pessoa  {
 	
 		// Variaveis de Instancia
